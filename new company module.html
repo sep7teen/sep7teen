@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Company Module</title>
+    <link rel="stylesheet" href="new company module.css">
+</head>
+
+<body>
+    <header>Page Header</header>
+    <div class="menu">Menu section</div>
+    <main>
+        <div class="form-container">
+            <div class="header">
+                <h2>Company Module</h2>
+            </div>
+            <form>
+                <div class="form-grid">
+                    <div class="input-group">
+                        <label>Company ID</label>
+                        <div class="search-container">
+                            <input type="text" placeholder="Enter or search Company ID">
+                            <button type="button" class="search-btn">🔍</button>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Company Name</label>
+                        <input type="text">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Registered Address</label>
+                        <input type="text">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Phone No.</label>
+                        <input type="tel">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Email</label>
+                        <input type="email">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Website</label>
+                        <input type="url">
+                    </div>
+
+                    <div class="input-group">
+                        <label>NTN</label>
+                        <input type="text">
+                    </div>
+
+                    <div class="input-group">
+                        <label>STRN</label>
+                        <input type="text">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Company Type</label>
+                        <select>
+                            <option disabled selected>Please select</option>
+                            <option>Individual</option>
+                            <option>Partnership</option>
+                            <option>Company</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label>Fiscal Start Date</label>
+                        <input type="date">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Company Logo</label>
+                        <div class="logo-upload" onclick="document.getElementById('logo-input').click()">
+                            <div id="logo-text">Click to upload logo<br>(JPG/PNG only, max size: 2MB)</div>
+                            <div id="logo-preview" class="selected-file"></div>
+                            <input type="file" id="logo-input" accept="image/jpeg, image/png" hidden>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="button-group">
+                    <button type="button" class="btn btn-new">New</button>
+                    <button type="button" class="btn btn-save">Save</button>
+                    <button type="button" class="btn btn-edit">Edit</button>
+                    <button type="button" class="btn btn-delete">Delete</button>
+                    <button type="button" class="btn btn-print">Print</button>
+                    <button type="button" class="btn btn-exit">Exit</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">Powered by<a href="#"> sep7teen.com</a></footer>
+    <script>
+        // Handle logo upload
+        const logoInput = document.getElementById('logo-input');
+        const logoPreview = document.getElementById('logo-preview');
+        const logoText = document.getElementById('logo-text');
+
+        logoInput.addEventListener('change', function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                if (file.size > 2 * 1024 * 1024) {
+                    alert('File size exceeds 2MB');
+                    return;
+                }
+                logoText.style.display = 'none';
+                logoPreview.innerHTML = `Selected: ${file.name}`;
+
+                // For image preview (optional):
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.style.maxWidth = '200px';
+                    logoPreview.innerHTML = '';
+                    logoPreview.appendChild(img);
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+</body>
+
+</html>
